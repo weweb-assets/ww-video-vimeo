@@ -31,7 +31,7 @@ export default {
                 en: 'Start time (s)',
             },
             type: 'Number',
-            options: (_, sidepanelContent) => ({ min: 0, max: sidepanelContent.videoDuration }),
+            options: (_, sidepanelContent) => ({ min: 0, max: 30 }),
             section: 'settings',
             bindable: true,
             defaultValue: 0,
