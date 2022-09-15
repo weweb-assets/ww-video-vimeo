@@ -17,10 +17,10 @@ export default {
     emits: ['update:sidepanel-content', 'trigger-event'],
     setup(props) {
         const player = null;
-        const { variableValue: isPlayedVariableValue, setValue: setIsPlayedValue } =
+        const { variableValue: isPlayingVariableValue, setValue: setIsPlayingValue } =
             wwLib.wwVariable.useComponentVariable({
                 uid: props.uid,
-                name: 'Is Played',
+                name: 'Is Playing',
                 type: 'boolean',
                 defaultValue: false,
                 readonly: true,
@@ -34,7 +34,7 @@ export default {
                 readonly: true,
             });
 
-        return { player, isPlayedVariableValue, setIsPlayedValue, currentTimeVariableValue, setCurrentTimeValue };
+        return { player, isPlayingVariableValue, setIsPlayingValue, currentTimeVariableValue, setCurrentTimeValue };
     },
     computed: {
         isEditing() {
@@ -91,7 +91,7 @@ export default {
                 });
             /* wwEditor:end */
 
-            this.setIsPlayedValue(false);
+            this.setIsPlayingValue(false);
             this.player.setCurrentTime(this.content.videoStartTime);
             this.player.setLoop(this.content.loop);
             this.player.setMuted(this.content.muted);
@@ -106,17 +106,17 @@ export default {
             });
 
             this.player.on('play', data => {
-                this.setIsPlayedValue(true);
+                this.setIsPlayingValue(true);
                 this.$emit('trigger-event', { name: 'play', event: { value: data.seconds } });
             });
 
             this.player.on('pause', data => {
-                this.setIsPlayedValue(false);
+                this.setIsPlayingValue(false);
                 this.$emit('trigger-event', { name: 'pause', event: { value: data.seconds } });
             });
 
             this.player.on('ended', () => {
-                this.setIsPlayedValue(false);
+                this.setIsPlayingValue(false);
                 this.$emit('trigger-event', { name: 'end', event: {} });
             });
         },
