@@ -9,6 +9,11 @@ export default {
         },
         icon: 'play',
     },
+    triggerEvents: [
+        { name: 'play', label: { en: 'On play' }, event: { value: '' }, default: true },
+        { name: 'pause', label: { en: 'On pause' }, event: { value: '' } },
+        { name: 'end', label: { en: 'On end' }, event: { value: '' } },
+    ],
     properties: {
         url: {
             path: 'url',
@@ -19,8 +24,22 @@ export default {
                 placeholder: 'Url',
             },
             bindable: true,
-            hidden: content => content.provider === 'weweb',
-            defaultValue: 'https://youtu.be/76CMCIW-wGk',
+            defaultValue: '',
+        },
+        videoStartTime: {
+            label: {
+                en: 'Start time (s)',
+            },
+            type: 'Number',
+            options: (_, sidepanelContent) => ({ min: 0, max: sidepanelContent.videoDuration }),
+            section: 'settings',
+            bindable: true,
+            defaultValue: 0,
+        },
+        videoDuration: {
+            editorOnly: true,
+            defaultValue: 0,
+            hidden: true,
         },
         autoplay: {
             label: { en: 'Autoplay', fr: 'Lecture automatique' },
