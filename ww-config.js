@@ -58,6 +58,13 @@ export default {
             type: 'OnOff',
             section: 'settings',
             defaultValue: false,
+            bindable: true,
+            /* wwEditor:start */
+            bindingValidation: {
+                type: 'boolean',
+                tooltip: 'A boolean that defines if the video should start automatically: `true | false`',
+            },
+            /* wwEditor:end */
         },
         muted: {
             label: { en: 'Muted', fr: 'Muet' },

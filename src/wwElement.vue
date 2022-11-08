@@ -68,8 +68,9 @@ export default {
         'content.muted'(value) {
             if (this.player) this.player.setMuted(value);
         },
-        'content.autoplay'() {
+        'content.autoplay'(value) {
             if (!this.content.muted) this.$emit('update:content', { muted: true });
+            if (value && this.player) this.player.play();
         },
     },
     methods: {
