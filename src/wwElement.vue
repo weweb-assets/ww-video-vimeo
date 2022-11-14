@@ -14,7 +14,7 @@ export default {
         wwEditorState: { type: Object, required: true },
         /* wwEditor:end */
     },
-    emits: ['update:sidepanel-content', 'trigger-event'],
+    emits: ['update:content', 'update:sidepanel-content', 'trigger-event'],
     setup(props) {
         const player = null;
         const { variableValue: isPlayingVariableValue, setValue: setIsPlayingValue } =
@@ -68,6 +68,10 @@ export default {
         'content.muted'(value) {
             if (this.player) this.player.setMuted(value);
         },
+        'content.autoplay'(value) {
+            if (!this.content.muted) this.$emit('update:content', { muted: true });
+            if (value && this.player) this.player.play();
+        },
     },
     methods: {
         async initPlayer() {
@@ -112,12 +116,11 @@ export default {
 
             this.player.on('pause', data => {
                 this.setIsPlayingValue(false);
-                this.$emit('trigger-event', { name: 'pause', event: { value: data.seconds } });
-            });
-
-            this.player.on('ended', () => {
-                this.setIsPlayingValue(false);
-                this.$emit('trigger-event', { name: 'end', event: {} });
+                if (Math.floor(data.seconds) === Math.floor(data.duration)) {
+                    this.$emit('trigger-event', { name: 'end', event: { value: data.seconds } });
+                } else {
+                    this.$emit('trigger-event', { name: 'pause', event: { value: data.seconds } });
+                }
             });
         },
     },
