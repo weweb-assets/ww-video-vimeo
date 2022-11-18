@@ -7,7 +7,7 @@ export default {
             fr: 'Vidéo - Vimeo',
             en: 'Vidéo - Vimeo',
         },
-        icon: 'play',
+        icon: 'logos/vimeo',
     },
     triggerEvents: [
         { name: 'play', label: { en: 'On play' }, event: { value: '' }, default: true },
