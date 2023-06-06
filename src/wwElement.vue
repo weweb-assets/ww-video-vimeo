@@ -123,6 +123,18 @@ export default {
                 }
             });
         },
+        playVideo() {
+            if (!this.player) return;
+            this.player.play();
+        },
+        pauseVideo() {
+            if (!this.player) return;
+            this.player.pause();
+        },
+        seekTo(time) {
+            if (!this.player) return;
+            this.player.setCurrentTime(time);
+        },
     },
     beforeUnmount() {
         if (this.player) {
