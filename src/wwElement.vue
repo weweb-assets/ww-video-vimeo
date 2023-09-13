@@ -44,9 +44,11 @@ export default {
             // eslint-disable-next-line no-unreachable
             return false;
         },
-        videoId() {
+        videoUrl() {
             if (!this.content.url || typeof this.content.url !== 'string') return '';
-            return this.content.url.split('m/')[1].split('?')[0];
+            // handle unlisted videos
+            const path = this.content.url.split('m/')[1]?.split('/');
+            return path.length > 1 ? `https://player.vimeo.com/video/${path[0]}?h=${path[1]}` : this.content.url;
         },
     },
     watch: {
@@ -80,7 +82,7 @@ export default {
 
             const el = this.$refs.videoPlayer;
             let options = {
-                id: this.videoId,
+                url: this.videoUrl,
                 controls: this.content.controls,
             };
             this.player = new Vimeo(el, options);
