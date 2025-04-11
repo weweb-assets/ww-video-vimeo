@@ -22,14 +22,19 @@ Renders a Vimeo video player within a website with playback control features.
 - loop: boolean - Loop playback. Default: false
 - controls: boolean - Show video controls. Default: true
 
-***Internal Variables:***
-- Is Playing: boolean - Indicates if video is currently playing  (Path: variables['current_element_uid-Is Playing'])
-- Current time: number - Current playback time in seconds  (Path: variables['current_element_uid-Current time'])
-
 ***Events:***
 - play: Triggered when video starts playing. Value is current time in seconds. Payload: {value: number}
 - pause: Triggered when video is paused. Value is current time in seconds. Payload: {value: number}
 - end: Triggered when video reaches the end. Value is current time in seconds. Payload: {value: number}
+
+***Exposed Variables:***
+- Is Playing: boolean - Indicates if video is currently playing  (Path: variables['current_element_uid-Is Playing'])
+- Current time: number - Current playback time in seconds  (Path: variables['current_element_uid-Current time'])
+
+***Exposed Element Actions:***
+- playVideo: (no args) Play video
+- pauseVideo: (no args) Pause video
+- seekTo: (arg1 (time in seconds): number) Go to time
 
 ***Notes:***
  Do not set element or parent element height to 0 : a combination of width to 100% & aspectRatio to 16/9 will ensure the video is displayed correctly.
