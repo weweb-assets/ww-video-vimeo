@@ -84,6 +84,9 @@ export default {
             let options = {
                 url: this.videoUrl,
                 controls: this.content.controls,
+                playsinline: true,
+                responsive: true,
+                transparent: true,
             };
             this.player = new Vimeo(el, options);
 
@@ -157,6 +160,9 @@ export default {
     position: relative;
     overflow: hidden;
     aspect-ratio: 16 / 9;
+    transform-style: flat;
+    will-change: transform;
+    backface-visibility: hidden;
 
     &.editing::after {
         content: '';
@@ -169,6 +175,7 @@ export default {
         inset: 0;
         width: 100%;
         height: 100%;
+        transform: translateZ(0);
     }
 }
 </style>

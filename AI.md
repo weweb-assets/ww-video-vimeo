@@ -38,3 +38,8 @@ Renders a Vimeo video player within a website with playback control features.
 
 ***Notes:***
  Do not set element or parent element height to 0 : a combination of width to 100% & aspectRatio to 16/9 will ensure the video is displayed correctly.
+
+***Example:***
+<elements>
+{"uid":0,"tag":"ww-video-vimeo","name":"Vimeo Player","props":{"default":{"url":"https://vimeo.com/768475858","controls":true,"autoplay":false,"loop":false,"muted":false,"videoStartTime":0}},"styles":{"default":{"width":"100%","height":"auto","aspectRatio":"16/9"}}}
+</elements>
